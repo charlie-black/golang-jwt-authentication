@@ -32,7 +32,11 @@ func main(){
 	}
 	println("Connected to the database")
 	
+	app := iris.New()
+	app.Use(iris.Compression)
 
+	authcontroller.InitializeAuthEndpoints(signer, app, db)
+	usercontroller.InitializeUserEndpoints(app, db, verifyMiddleWare)
 	app.Listen(":9090")
 
 }
