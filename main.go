@@ -22,5 +22,14 @@ func main(){
 	verifyMiddleWare := verifier.Verify(func() interface{} {
 		return new(models.UserClaims)
 	})
+	//connect to the database
+
+	db, err := sqlx.Connect("postgres", "user=piccasso dbname=authDB sslmode=disable")
+
+	if err != nil {
+		log.Fatalln(err)
+
+	}
+	println("Connected to the database")
 
 }
