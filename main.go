@@ -19,4 +19,8 @@ func main(){
 	signer := jwt.NewSigner(jwt.HS256, SECRET, 90*time.Minute)
 	verifier := jwt.NewVerifier(jwt.HS256, SECRET)
 
+	verifyMiddleWare := verifier.Verify(func() interface{} {
+		return new(models.UserClaims)
+	})
+
 }
