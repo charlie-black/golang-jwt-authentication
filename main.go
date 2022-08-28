@@ -16,4 +16,5 @@ import (
 
 func main(){
 	var SECRET = []byte("@#$%$#%$@#&*$")
+	signer := jwt.NewSigner(jwt.HS256, SECRET, 90*time.Minute)
 }
