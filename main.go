@@ -31,5 +31,8 @@ func main(){
 
 	}
 	println("Connected to the database")
+	
+
+	app.Listen(":9090")
 
 }
