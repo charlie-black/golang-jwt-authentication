@@ -39,17 +39,7 @@ func InitializeAuthEndpoints(signer *jwt.Signer, app *iris.Application, db *sqlx
 			return
 
 		}
-		_, err = db.NamedExec(`INSERT INTO user_details (email, phone, name)
-        VALUES (:email, :phone, :name)`, map[string]interface{}{
-			"email": signup_params.Email, "phone":signup_params.Phone, "name":signup_params.Name,
-		})
-
-		if err != nil {
-			ctx.StatusCode(iris.StatusBadRequest)
-			ctx.JSON(iris.Map{"error": err.Error()})
-			return
-
-		}
+		
 		ctx.JSON(iris.Map{"message": "User Created Successfully", "token": string(token)})
 	})
 

@@ -18,7 +18,7 @@ func InitializeUserEndpoints(app *iris.Application, db *sqlx.DB, verifyMiddleWar
 	app.Get("/user_details", verifyMiddleWare, func(ctx iris.Context) {
 		info := []models.UserInfo{}
 
-		err := db.Select(&info, "SELECT * FROM user_details")
+		err := db.Select(&info, "SELECT id,name,email,phone FROM users")
 
 		if err != nil {
 			fmt.Println(err)
